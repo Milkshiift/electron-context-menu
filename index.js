@@ -28,7 +28,6 @@ const removeUnusedMenuItems = menuTemplate => {
 function download(win, url, options = {}) {
 	const { saveAs } = options;
 	const savePath = "~/Downloads";
-	console.log('Downloading:', url, 'to', savePath);
 	win.webContents.downloadURL(url);
 	win.webContents.session.once('will-download', (event, item) => {
 		if (saveAs) {
