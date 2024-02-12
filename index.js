@@ -1,7 +1,6 @@
 'use strict';
 const electron = require('electron');
-const {download} = require('electron-dl');
-const isDev = require('electron-is-dev');
+const downloadsFolder = require('downloads-folder');
 
 const webContents = win => win.webContents || (win.id && win);
 
@@ -26,6 +25,20 @@ const removeUnusedMenuItems = menuTemplate => {
 			return !toDelete;
 		});
 };
+
+function download(win, url, options = {}) {
+	const { saveAs } = options;
+	const savePath = downloadsFolder();
+	console.log('Downloading:', url, 'to', savePath);
+	win.webContents.downloadURL(url);
+	win.webContents.session.once('will-download', (event, item) => {
+		if (saveAs) {
+			item.setSaveDialogOptions({ defaultPath: savePath });
+		} else {
+			item.setSavePath(savePath);
+		}
+	});
+}
 
 const create = (win, options) => {
 	const handleContextMenu = (event, props) => {
@@ -236,7 +249,7 @@ const create = (win, options) => {
 			})
 		};
 
-		const shouldShowInspectElement = typeof options.showInspectElement === 'boolean' ? options.showInspectElement : isDev;
+		const shouldShowInspectElement = true;
 		const shouldShowSelectAll = options.showSelectAll || (options.showSelectAll !== false && process.platform !== 'darwin');
 
 		function word(suggestion) {
