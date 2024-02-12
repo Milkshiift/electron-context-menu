@@ -33,15 +33,9 @@
 		"words",
 		"dictionary"
 	],
-	"dependencies": {
-		"downloads-folder": "^3.0.3"
-	},
 	"devDependencies": {
 		"@types/node": "^15.0.1",
-		"ava": "^2.4.0",
-		"electron": "^12.0.6",
-		"tsd": "^0.14.0",
-		"xo": "^0.39.1"
+		"electron": "^12.0.6"
 	},
 	"xo": {
 		"envs": [

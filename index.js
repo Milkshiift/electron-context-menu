@@ -1,6 +1,5 @@
 'use strict';
 const electron = require('electron');
-const downloadsFolder = require('downloads-folder');
 
 const webContents = win => win.webContents || (win.id && win);
 
@@ -28,7 +27,7 @@ const removeUnusedMenuItems = menuTemplate => {
 
 function download(win, url, options = {}) {
 	const { saveAs } = options;
-	const savePath = downloadsFolder();
+	const savePath = "~/Downloads";
 	console.log('Downloading:', url, 'to', savePath);
 	win.webContents.downloadURL(url);
 	win.webContents.session.once('will-download', (event, item) => {
