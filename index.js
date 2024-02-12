@@ -1,6 +1,5 @@
 'use strict';
 const electron = require('electron');
-const cliTruncate = require('cli-truncate');
 const {download} = require('electron-dl');
 const isDev = require('electron-is-dev');
 
@@ -330,7 +329,7 @@ const create = (win, options) => {
 			// Replace placeholders in menu item labels
 			if (typeof menuItem.label === 'string' && menuItem.label.includes('{selection}')) {
 				const selectionString = typeof props.selectionText === 'string' ? props.selectionText.trim() : '';
-				menuItem.label = menuItem.label.replace('{selection}', cliTruncate(selectionString, 25).replace(/&/g, '&&'));
+				menuItem.label = menuItem.label.replace('{selection}', truncateString(selectionString, 25).replace(/&/g, '&&'));
 			}
 		}
 
@@ -359,6 +358,14 @@ const create = (win, options) => {
 		webContents(win).removeListener('context-menu', handleContextMenu);
 	};
 };
+
+function truncateString(str, maxLength) {
+    if (str.length > maxLength) {
+        return str.substring(0, maxLength) + '...';
+    } else {
+        return str;
+    }
+}
 
 module.exports = (options = {}) => {
 	if (process.type === 'renderer') {

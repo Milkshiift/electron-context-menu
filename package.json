@@ -10,12 +10,6 @@
 		"email": "sindresorhus@gmail.com",
 		"url": "https://sindresorhus.com"
 	},
-	"scripts": {
-		"start": "electron fixtures/fixture.js",
-		"test": "xo && ava && tsd",
-		"start-fixture2": "electron fixtures/fixture-menu.js",
-		"start-fixture3": "electron fixtures/fixture-toggle.js"
-	},
 	"files": [
 		"index.js",
 		"index.d.ts"
@@ -40,7 +34,6 @@
 		"dictionary"
 	],
 	"dependencies": {
-		"cli-truncate": "^2.1.0",
 		"electron-dl": "^3.2.1",
 		"electron-is-dev": "^2.0.0"
 	},
