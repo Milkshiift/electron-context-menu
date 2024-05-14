@@ -80,6 +80,14 @@ const create = (win, options) => {
 					electron.shell.openExternal(url.toString());
 				}
 			}),
+			searchWithDuckDuckGo: decorateMenuItem({
+				id: 'searchWithDuckDuckGo',
+				label: '&Search with DuckDuckGo',
+				visible: hasText,
+				click() {
+					electron.shell.openExternal('https://duckduckgo.com/?q='+props.selectionText);
+				}
+			}),
 			cut: decorateMenuItem({
 				id: 'cut',
 				label: 'Cu&t',
