@@ -293,6 +293,7 @@ const create = (win, options) => {
 			options.showLookUpSelection !== false && defaultActions.lookUpSelection(),
 			defaultActions.separator(),
 			options.showSearchWithGoogle !== false && defaultActions.searchWithGoogle(),
+			options.showSearchWithDuckDuckGo !== false && defaultActions.searchWithDuckDuckGo(),
 			defaultActions.separator(),
 			defaultActions.cut(),
 			defaultActions.copy(),
