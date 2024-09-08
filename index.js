@@ -128,6 +128,9 @@ const create = (win, options) => {
 				visible: properties.mediaType === 'image',
 				click(menuItem) {
 					properties.srcURL = menuItem.transform ? menuItem.transform(properties.srcURL) : properties.srcURL;
+					if(properties.srcURL.startsWith("https://media.discordapp.net")){
+						properties.srcURL = /^.*(?=(&=&))/.exec(properties.srcURL)
+					}
 					download(win, properties.srcURL);
 				},
 			}),
