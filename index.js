@@ -58,11 +58,11 @@ const create = (win, options) => {
 			}),
 			searchWithGoogle: decorateMenuItem({
 				id: 'searchWithGoogle',
-				label: '&Search with Google',
+				label: '&Search with Startpage (Google)',
 				visible: hasText,
 				click() {
-					const url = new URL('https://www.google.com/search');
-					url.searchParams.set('q', properties.selectionText);
+					const url = new URL('https://www.startpage.com/sp/search');
+					url.searchParams.set('query', properties.selectionText);
 					electron.shell.openExternal(url.toString());
 				},
 			}),
