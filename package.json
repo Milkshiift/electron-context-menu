@@ -49,21 +49,11 @@
 		"dictionary"
 	],
 	"dependencies": {
-		"cli-truncate": "^4.0.0",
-		"electron-dl": "^4.0.0",
-		"electron-is-dev": "^3.0.1"
+		"electron-dl": "^4.0.0"
 	},
 	"devDependencies": {
-		"@types/node": "^20.12.7",
-		"ava": "^6.1.2",
-		"electron": "^30.0.1",
-		"typescript": "^5.4.5",
-		"xo": "^0.58.0"
-	},
-	"xo": {
-		"envs": [
-			"node",
-			"browser"
-		]
+		"@types/node": "^22.5.4",
+		"electron": "^32.0.2",
+		"typescript": "^5.5.4"
 	}
 }

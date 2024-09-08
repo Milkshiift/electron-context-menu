@@ -1,8 +1,6 @@
 import process from 'node:process';
 import electron from 'electron';
-import cliTruncate from 'cli-truncate';
 import {download} from 'electron-dl';
-import isDev from 'electron-is-dev';
 
 const webContents = win => win.webContents ?? (win.id && win);
 
@@ -235,7 +233,7 @@ const create = (win, options) => {
 			}),
 		};
 
-		const shouldShowInspectElement = typeof options.showInspectElement === 'boolean' ? options.showInspectElement : isDev;
+		const shouldShowInspectElement = true;
 		const shouldShowSelectAll = options.showSelectAll || (options.showSelectAll !== false && process.platform !== 'darwin');
 
 		function word(suggestion) {
@@ -328,7 +326,7 @@ const create = (win, options) => {
 			// Replace placeholders in menu item labels
 			if (typeof menuItem.label === 'string' && menuItem.label.includes('{selection}')) {
 				const selectionString = typeof properties.selectionText === 'string' ? properties.selectionText.trim() : '';
-				menuItem.label = menuItem.label.replace('{selection}', cliTruncate(selectionString, 25).replaceAll('&', '&&'));
+				menuItem.label = menuItem.label.replace('{selection}', truncateString(selectionString, 25).replaceAll('&', '&&'));
 			}
 		}
 
@@ -357,6 +355,14 @@ const create = (win, options) => {
 		webContents(win).removeListener('context-menu', handleContextMenu);
 	};
 };
+
+function truncateString(str, maxLength) {
+	if (str.length > maxLength) {
+		return str.substring(0, maxLength) + '...';
+	} else {
+		return str;
+	}
+}
 
 export default function contextMenu(options = {}) {
 	if (process.type === 'renderer') {
