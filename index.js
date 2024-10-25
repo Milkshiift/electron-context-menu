@@ -1,6 +1,6 @@
 import process from 'node:process';
 import electron from 'electron';
-import {download} from 'electron-dl';
+import {download} from "./download.js";
 
 const webContents = win => win.webContents ?? (win.id && win);
 
